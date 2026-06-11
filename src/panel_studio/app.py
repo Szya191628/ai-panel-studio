@@ -132,8 +132,13 @@ async def start_discussion(discussion_id: str):
 @app.post("/api/discussions/{discussion_id}/stop")
 async def stop_discussion(discussion_id: str, request: Request):
     """结束讨论。"""
-    body = await request.json() if request.headers.get("content-type") == "application/json" else {}
-    conclusion = body.get("conclusion")
+    conclusion = None
+    try:
+        if request.headers.get("content-type") == "application/json":
+            body = await request.json()
+            conclusion = body.get("conclusion")
+    except Exception:
+        pass  # 无 body 或非 JSON 时忽略
     result = await core.stop_discussion(discussion_id, conclusion)
     if not result.get("ok"):
         raise HTTPException(status_code=400, detail=result.get("error", "结束失败"))
