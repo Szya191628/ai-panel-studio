@@ -517,6 +517,80 @@
     font-weight: 600;
 }
 
+/* 嘉宾确认弹窗 — 操作按钮 */
+.config-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-default);
+}
+
+.btn-config {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.btn-config svg {
+    flex-shrink: 0;
+    transition: transform var(--transition-fast);
+}
+
+/* 重新生成 — 次要操作，幽灵风格 */
+.btn-regenerate {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-light);
+}
+
+.btn-regenerate:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--text-dim);
+}
+
+.btn-regenerate:hover svg {
+    transform: rotate(-180deg);
+}
+
+.btn-regenerate:active {
+    transform: scale(0.97);
+}
+
+/* 确认进入 — 主操作，强调色 */
+.btn-confirm {
+    background: linear-gradient(135deg, var(--accent-blue), #6366f1);
+    color: white;
+    box-shadow: 0 2px 12px rgba(99, 102, 241, 0.3);
+    padding: 10px 24px;
+}
+
+.btn-confirm:hover {
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    transform: translateY(-1px);
+}
+
+.btn-confirm:hover svg {
+    transform: translateX(3px);
+}
+
+.btn-confirm:active {
+    transform: translateY(0) scale(0.98);
+}
+
 /* 加载动画 */
 .loading-spinner {
     display: inline-flex;
