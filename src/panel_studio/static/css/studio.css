@@ -61,7 +61,86 @@
 
 .studio-actions {
     display: flex;
-    gap: 8px;
+    align-items: center;
+    gap: 6px;
+}
+
+.action-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--border-light);
+    margin: 0 4px;
+}
+
+/* 图标按钮基础样式 */
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.btn-icon svg {
+    flex-shrink: 0;
+}
+
+/* 返回按钮 — 低调的次要操作 */
+.btn-back {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid transparent;
+}
+
+.btn-back:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-light);
+}
+
+.btn-back:active {
+    transform: scale(0.97);
+}
+
+/* 开始按钮 — 强调色主操作 */
+.btn-start {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+}
+
+.btn-start:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+    transform: translateY(-1px);
+}
+
+.btn-start:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* 结束按钮 — 危险操作，低调但可识别 */
+.btn-stop {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--border-light);
+}
+
+.btn-stop:hover {
+    color: var(--accent-red);
+    background: rgba(239, 68, 68, 0.08);
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.btn-stop:active {
+    transform: scale(0.97);
 }
 
 /* 左侧面板 — 嘉宾状态 */
