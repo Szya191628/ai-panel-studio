@@ -50,12 +50,18 @@ class TestDiscussionCRUD:
 
     def test_list_discussions(self, db, conn):
         """列出讨论应按创建时间倒序。"""
-        db.create_discussion(conn, topic="话题1")
-        db.create_discussion(conn, topic="话题2")
-        db.create_discussion(conn, topic="话题3")
+        import time
+        d1 = db.create_discussion(conn, topic="话题1")
+        time.sleep(0.01)
+        d2 = db.create_discussion(conn, topic="话题2")
+        time.sleep(0.01)
+        d3 = db.create_discussion(conn, topic="话题3")
         discussions = db.list_discussions(conn)
         assert len(discussions) == 3
-        assert discussions[0]["topic"] == "话题3"  # 最新在前
+        # 按 created_at DESC 排序，最新在前
+        assert discussions[0]["id"] == d3["id"]
+        assert discussions[1]["id"] == d2["id"]
+        assert discussions[2]["id"] == d1["id"]
 
     def test_list_discussions_filter_status(self, db, conn):
         """按状态过滤讨论。"""

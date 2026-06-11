@@ -11,9 +11,9 @@ load_dotenv()
 
 
 # --- Deepseek API ---
-DEEPSEEK_API_KEY: str = os.environ.get("DEEPSEEK_API_KEY", "")
-DEEPSEEK_BASE_URL: str = os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com/v1")
-DEEPSEEK_MODEL: str = os.environ.get("DEEPSEEK_MODEL", "deepseek-chat")
+DEEPSEEK_API_KEY: str = os.environ.get("DEEPSEEK_API_KEY", "sk-UuPf633JkQeVo32voWIVS4zfyoI4OL3GJOH1hGeWLtYkV1XU")
+DEEPSEEK_BASE_URL: str = os.environ.get("DEEPSEEK_BASE_URL", "https://api.openai-proxy.org/v1")
+DEEPSEEK_MODEL: str = os.environ.get("DEEPSEEK_MODEL", "deepseek-v4-flash")
 
 # --- 服务 ---
 HOST: str = os.environ.get("HOST", "0.0.0.0")
