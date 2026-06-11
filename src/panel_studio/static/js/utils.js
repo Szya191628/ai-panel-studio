@@ -78,6 +78,16 @@ function getInitial(name) {
 }
 
 /**
+ * HTML 转义（防 XSS）
+ */
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+/**
  * 获取发言类型中文标签
  */
 function getSpeechTypeLabel(type) {
