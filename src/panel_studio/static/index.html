@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Panel Studio — AI圆桌讨论演播厅</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/theme.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- 顶部导航 -->
+        <header class="top-bar">
+            <div class="logo">
+                <div class="logo-icon">🎙️</div>
+                <span>AI Panel Studio</span>
+            </div>
+            <button class="btn btn-primary" onclick="openCreateModal()">
+                ＋ 新建讨论
+            </button>
+        </header>
+
+        <!-- 内容区 -->
+        <main class="content">
+            <div id="discussion-list" class="discussion-grid">
+                <!-- 动态填充 -->
+            </div>
+            <div id="empty-state" class="empty-state" style="display:none">
+                <div class="empty-icon">🎙️</div>
+                <div class="empty-title">还没有讨论</div>
+                <div class="empty-desc">点击右上角"新建讨论"开始你的第一场AI圆桌</div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 新建讨论模态框 -->
+    <div id="create-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-title">🎙️ 新建圆桌讨论</div>
+            <div class="form-group">
+                <label class="form-label">讨论话题</label>
+                <input type="text" id="topic-input" class="form-input"
+                       placeholder="例如：AI是否会取代程序员？" maxlength="200">
+            </div>
+            <div class="form-group">
+                <label class="form-label">专家人数：<span id="expert-count-label">4</span>人</label>
+                <input type="range" id="expert-count" class="form-range" min="2" max="8" value="4"
+                       oninput="document.getElementById('expert-count-label').textContent=this.value">
+                <div class="range-labels">
+                    <span>2人</span>
+                    <span>8人</span>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-ghost" onclick="closeCreateModal()">取消</button>
+                <button class="btn btn-primary" onclick="createDiscussion()">创建</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/utils.js"></script>
+    <script src="/static/js/index.js"></script>
+</body>
+</html>

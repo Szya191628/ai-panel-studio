@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>演播厅 — AI Panel Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/theme.css">
+    <link rel="stylesheet" href="/static/css/studio.css">
+</head>
+<body>
+    <div class="studio-layout" id="studio">
+        <!-- 顶栏 -->
+        <header class="studio-header">
+            <div class="studio-topic">
+                <span id="topic-title">加载中...</span>
+                <span class="live-badge" id="live-badge" style="display:none">
+                    <span class="live-dot"></span> LIVE
+                </span>
+            </div>
+            <div class="studio-actions">
+                <button class="btn btn-ghost" onclick="goHome()">← 返回</button>
+                <button class="btn btn-primary" id="btn-start" onclick="startDiscussion()" style="display:none">
+                    ▶ 开始讨论
+                </button>
+                <button class="btn btn-ghost" id="btn-stop" onclick="stopDiscussion()" style="display:none">
+                    ⏹ 结束
+                </button>
+            </div>
+        </header>
+
+        <!-- 左侧 — 嘉宾状态 -->
+        <aside class="panel-sidebar" id="panel-sidebar">
+            <div class="panel-section-title">嘉宾阵容</div>
+            <div id="panelist-list">
+                <!-- 动态填充 -->
+            </div>
+        </aside>
+
+        <!-- 中间 — Transcript -->
+        <section class="transcript-area">
+            <div class="transcript-header">
+                💬 讨论实录
+                <span id="speech-count" style="color:var(--text-dim); font-weight:400">0 条发言</span>
+            </div>
+            <div class="transcript-list" id="transcript-list">
+                <div class="waiting-state" id="waiting-state">
+                    <div class="waiting-icon">🎙️</div>
+                    <div class="waiting-title">等待讨论开始</div>
+                    <div class="waiting-desc">确认嘉宾阵容后，点击"开始讨论"启动AI圆桌</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 右侧 — 共识/分歧 -->
+        <aside class="findings-sidebar" id="findings-sidebar">
+            <div class="finding-section consensus">
+                <div class="finding-title consensus">✅ 共识</div>
+                <div id="consensus-list">
+                    <div class="finding-empty">讨论开始后自动提炼...</div>
+                </div>
+            </div>
+            <div class="finding-section disagreement">
+                <div class="finding-title disagreement">⚡ 分歧</div>
+                <div id="disagreement-list">
+                    <div class="finding-empty">讨论开始后自动提炼...</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 底部 — 共识/分歧（窄屏） -->
+        <div class="findings-bar" id="findings-bar">
+            <div class="finding-section consensus" style="flex:1">
+                <div class="finding-title consensus">✅ 共识</div>
+                <div id="consensus-list-bar">
+                    <div class="finding-empty">...</div>
+                </div>
+            </div>
+            <div class="finding-section disagreement" style="flex:1">
+                <div class="finding-title disagreement">⚡ 分歧</div>
+                <div id="disagreement-list-bar">
+                    <div class="finding-empty">...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 嘉宾确认弹窗 -->
+    <div id="config-overlay" class="config-overlay" style="display:none">
+        <div class="config-panel">
+            <div class="config-title">🎭 确认嘉宾阵容</div>
+            <p style="color:var(--text-secondary); margin-bottom:20px; font-size:14px;">
+                AI 已为本次讨论生成以下嘉宾，请确认后进入演播厅。
+            </p>
+            <div id="panelist-preview-grid" class="panelist-preview-grid">
+                <!-- 动态填充 -->
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-ghost" onclick="regeneratePanelists()">🔄 重新生成</button>
+                <button class="btn btn-primary" onclick="confirmPanelists()">✅ 确认，进入演播厅</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 结论弹窗 -->
+    <div id="conclusion-overlay" class="conclusion-overlay" style="display:none">
+        <div class="conclusion-panel">
+            <div class="conclusion-icon">🎯</div>
+            <div class="conclusion-title">讨论结束</div>
+            <div class="conclusion-text" id="conclusion-text"></div>
+            <button class="btn btn-primary" onclick="goHome()">返回首页</button>
+        </div>
+    </div>
+
+    <script src="/static/js/utils.js"></script>
+    <script src="/static/js/studio.js"></script>
+</body>
+</html>
